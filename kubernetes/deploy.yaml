@@ -1,0 +1,120 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ftpserver
+  namespace: default
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      name: ftpserver
+      labels:
+        app: ftpserver
+    spec:
+      containers:
+        - name: ftpserver-admin
+          resources:
+            requests:
+              memory: 300Mi
+              cpu: 5m
+            limits:
+              memory: 1000Mi
+              cpu: 1000m
+          image: {{your_repo}}/ftpserver-admin:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: "ftpserver-http"
+              containerPort: 80
+          volumeMounts:
+            - mountPath: /ftp
+              name: ftp-data
+              readOnly: false
+        - name: ftpserver
+          resources:
+            requests:
+              memory: 300Mi
+              cpu: 5m
+            limits:
+              memory: 1000Mi
+              cpu: 1000m
+          image: {{your_repo}}/ftpserver:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: "ftpserver-20"
+              containerPort: 20
+            - name: "ftpserver-21"
+              containerPort: 21
+            - name: "ftpserver-pas00"
+              containerPort: 20000
+            - name: "ftpserver-pas01"
+              containerPort: 20001
+            - name: "ftpserver-pas02"
+              containerPort: 20002
+            - name: "ftpserver-pas03"
+              containerPort: 20003
+            - name: "ftpserver-pas04"
+              containerPort: 20004
+            - name: "ftpserver-pas05"
+              containerPort: 20005
+            - name: "ftpserver-pas06"
+              containerPort: 20006
+            - name: "ftpserver-pas07"
+              containerPort: 20007
+            - name: "ftpserver-pas08"
+              containerPort: 20008
+            - name: "ftpserver-pas09"
+              containerPort: 20009
+            - name: "ftpserver-pas10"
+              containerPort: 20010
+            - name: "ftpserver-pas11"
+              containerPort: 20011
+            - name: "ftpserver-pas12"
+              containerPort: 20012
+            - name: "ftpserver-pas13"
+              containerPort: 20013
+            - name: "ftpserver-pas14"
+              containerPort: 20014
+            - name: "ftpserver-pas15"
+              containerPort: 20015
+            - name: "ftpserver-pas16"
+              containerPort: 20016
+            - name: "ftpserver-pas17"
+              containerPort: 20017
+            - name: "ftpserver-pas18"
+              containerPort: 20018
+            - name: "ftpserver-pas19"
+              containerPort: 20019
+            - name: "ftpserver-pas20"
+              containerPort: 20020
+            - name: "ftpserver-pas21"
+              containerPort: 20021
+            - name: "ftpserver-pas22"
+              containerPort: 20022
+            - name: "ftpserver-pas23"
+              containerPort: 20023
+            - name: "ftpserver-pas24"
+              containerPort: 20024
+            - name: "ftpserver-pas25"
+              containerPort: 20025
+            - name: "ftpserver-pas26"
+              containerPort: 20026
+            - name: "ftpserver-pas27"
+              containerPort: 20027
+            - name: "ftpserver-pas28"
+              containerPort: 20028
+            - name: "ftpserver-pas29"
+              containerPort: 20029
+            - name: "ftpserver-pas30"
+              containerPort: 20030
+          volumeMounts:
+            - mountPath: /ftp
+              name: ftp-data
+              readOnly: false
+      volumes:
+        name: ftp-data
+        emptyDir: {}
+
+
