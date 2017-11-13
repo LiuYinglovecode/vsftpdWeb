@@ -48,11 +48,11 @@ Load the services and the ingress:
 
 To start:
 
-   kubectl apply -f deploy.yaml
+       kubectl apply -f deploy.yaml
 
 To stop:
 
-   kubectl delete -f deploy.yaml
+       kubectl delete -f deploy.yaml
 
 # Known issues/limitations
 
